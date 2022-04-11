@@ -1,0 +1,5 @@
+const canvas = document.querySelector('canvas')
+const ctx = canvas.getContext('2d')
+const board = new Board(ctx, 30)
+board.addPiece(new Pawn(2, 4))
+setInterval(() => board.draw(), 100)
