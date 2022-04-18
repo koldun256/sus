@@ -1,4 +1,4 @@
-class Rook {
+class Bishop {
 	constructor(x, y, team) {
 		this.x = x
 		this.y = y
@@ -22,7 +22,7 @@ class Rook {
 	}
 	premoves(board) {
 		let result = []
-		for(let direction of [[1, 0], [0, 1], [-1, 0], [0, -1]]) {
+		for(let direction of [[1, 1], [1, -1], [-1, 1], [-1, -1]]) {
 			result.push(...this.premoveInDirection(board, direction))
 		}
 		return result
