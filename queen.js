@@ -1,14 +1,14 @@
-class Rook {
+class Queen {
 	constructor(position, team) {
 		this.position = position
 		this.team = team
-		this.color = team ? Colors.aqua : Colors.dark_aqua
+		this.color = team ? Colors.purple : Colors.dark_purple
 	}
 	draw(board) {
 		Draw.cell(board, this.position, this.color)
 	}
 	drawSelection(board) {
-		this.premoves(board).forEach(premove => Draw.dot(board, premove, this.color, 6))
+		this.premoves(board).forEach(premove => Draw.dot(board, premove, this.color, 7))
 	}
 	premoveInDirection(board, direction) {
 		let result = []
@@ -21,7 +21,7 @@ class Rook {
 	}
 	premoves(board) {
 		let result = []
-		for(let direction of [[1, 0], [0, 1], [-1, 0], [0, -1]]) {
+		for(let direction of [[1, 0], [0, 1], [-1, 0], [0, -1],[1, 1], [-1, 1], [1, -1], [-1, -1]]) {
 			result.push(...this.premoveInDirection(board, direction))
 		}
 		return result

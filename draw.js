@@ -1,11 +1,11 @@
 const Draw = {}
-Draw.cell = (board, x, y, color) => {
+Draw.cell = (board, pos, color) => {
 	board.ctx.fillStyle = color
-	board.ctx.fillRect(...board.rect(x, y))
+	board.ctx.fillRect(...board.rect(pos))
 }
-Draw.dot = (board, x, y, color, r) => {
+Draw.dot = (board, pos, color, r) => {
 	board.ctx.beginPath()
-	board.ctx.arc(...board.center(x, y), r, 0, 2 * Math.PI, false)
+	board.ctx.arc(...board.center(pos), r, 0, 2 * Math.PI, false)
 	board.ctx.fillStyle = color
 	board.ctx.fill()
 }

@@ -1,22 +1,21 @@
 class Bishop {
-	constructor(x, y, team) {
-		this.x = x
-		this.y = y
+	constructor(position, team) {
+		this.position = position
 		this.team = team
+		this.color = team ? Colors.green : Colors.dark_green
 	}
 	draw(board) {
-		Draw.cell(board, this.x, this.y, this.team ? '#8ec07c' : '#689d6a')
+		Draw.cell(board, this.position, this.color)
 	}
 	drawSelection(board) {
-		this.premoves(board).forEach(premove => Draw.dot(board, ...premove, this.team ? '#8ec07c' : '#689d6a', 7))
+		this.premoves(board).forEach(premove => Draw.dot(board, premove, this.color, 6))
 	}
 	premoveInDirection(board, direction) {
 		let result = []
-		let position = [this.x + direction[0], this.y + direction[1]]
-		while((!board.pieceAt(...position)) && board.exists(...position)) {
+		let position = V.add(this.position, direction)
+		while((!board.pieceAt(position)) && board.exists(position)) {
 			result.push([...position])
-			position[0] += direction[0]
-			position[1] += direction[1]
+			position = V.add(position, direction)
 		}
 		return result
 	}
@@ -27,11 +26,10 @@ class Bishop {
 		}
 		return result
 	}
-	move(board, x, y) {
+	move(board, clickPos) {
 		for(let premove of this.premoves(board)) {
-			if(eq(premove, board.cellAt(x, y))) {
-				this.x = premove[0]
-				this.y = premove[1]
+			if(V.eq(premove, board.cellAt(clickPos))) {
+				this.position = premove
 				return true
 			}
 		}
