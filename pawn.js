@@ -10,7 +10,10 @@ class Pawn {
 		Draw.cell(board, this.position, this.color)
 	}
 	drawSelection(board) {
-		this.premoves(board).forEach(premove => Draw.dot(board, premove, this.color, 6))
+		if(this.premove(board)) Draw.dot(board, this.premove(board), this.color, 6)
+		for(let attack of this.attack(board)) {
+			Draw.dot(board, attack, this.color, 6)
+		}
 	}
 	premove(board) {
 		let forward = V.add(this.position, this.direction)
@@ -19,11 +22,11 @@ class Pawn {
 	attack(board) {
 		return this.attackDirections
 			.map(dir => V.add(this.position, dir))
-			.filter(pos => board.pieceAt(pos) && board.pieceAt(pos).team == !this.team))
+			.filter(pos => board.pieceAt(pos) && board.pieceAt(pos).team == !this.team)
 	}
 	move(board, clickPos) {
 		if(this.premove(board) && V.eq(this.premove(board), board.cellAt(clickPos))) {
-			this.position = this.premove(clickPos)
+			this.position = this.premove(board)
 			return true
 		}
 		for(let attack of this.attack(board)) {

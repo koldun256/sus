@@ -25,7 +25,8 @@ class Board {
 	}
 	
 	take(position) {
-		
+		this.pieces = this.pieces.filter(piece => !(V.eq(piece.position, position) && piece.team != this.team))
+		console.log(position)
 	}
 
 	onclick(pos) {
