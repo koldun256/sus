@@ -31,6 +31,7 @@ class Bishop {
 	move(board, clickPos) {
 		for(let premove of this.premoves(board)) {
 			if(V.eq(premove, board.cellAt(clickPos))) {
+				if(board.pieceAt(premove)) board.take(premove)
 				this.position = premove
 				return true
 			}

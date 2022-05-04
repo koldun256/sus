@@ -2,6 +2,8 @@
 const Colors = {
 	bg_dark: '#504945',
 	bg_light: '#928374',
+	red: '#fb4934',
+	dark_red: '#cc241d',
 	yellow: '#fabd2f',
 	dark_yellow: '#d79921',
 	green: '#b8bb26',
