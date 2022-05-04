@@ -13,10 +13,12 @@ class Rook {
 	premoveInDirection(board, direction) {
 		let result = []
 		let position = V.add(this.position, direction)
-		while((!board.pieceAt(position)) && board.exists(position)) {
+		while(!board.pieceAt(position) && board.exists(position)) {
 			result.push([...position])
 			position = V.add(position, direction)
 		}
+		const last_piece = board.pieceAt(position)
+		if(last_piece && last_piece.team != this.team) result.push([...position])
 		return result
 	}
 	premoves(board) {
@@ -29,6 +31,7 @@ class Rook {
 	move(board, clickPos) {
 		for(let premove of this.premoves(board)) {
 			if(V.eq(premove, board.cellAt(clickPos))) {
+				if(board.pieceAt(premove)) board.take(premove)
 				this.position = premove
 				return true
 			}
