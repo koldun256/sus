@@ -3,9 +3,11 @@ class Bishop {
 		this.position = position
 		this.team = team
 		this.color = team ? Colors.green : Colors.dark_green
+		this.img = new Image()
+		this.img.src = team ? 'img/bishop-red.png' : 'img/bishop-blue.png'
 	}
 	draw(board) {
-		Draw.cell(board, this.position, this.color)
+		board.image(this.img, this.position)
 	}
 	drawSelection(board) {
 		this.premoves(board).forEach(premove => Draw.dot(board, premove, this.color, 6))

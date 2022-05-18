@@ -14,6 +14,9 @@ class Board {
 	rect([x, y]) {
 		return [x * this.cellSize, y * this.cellSize, this.cellSize, this.cellSize]
 	}
+	image(image, [x, y]) {
+		this.ctx.drawImage(image, x * this.cellSize, y * this.cellSize)
+	}
 
 	center([x, y]) {
 		return [(x+0.5) * this.cellSize, (y+0.5) * this.cellSize]

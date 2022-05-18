@@ -33,3 +33,6 @@ board.addPiece(new Bishop([5, 7], false))
 
 board.addPiece(new Queen([3, 0], true))
 board.addPiece(new Queen([3, 7], false))
+
+board.addPiece(new King([4, 0], true))
+board.addPiece(new King([4, 7], false))
